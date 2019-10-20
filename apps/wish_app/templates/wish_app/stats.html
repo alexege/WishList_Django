@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout" class="logout">Logout</a>
+    <h2>Hello {{current_user.first_name}} These are your stats!</h2>
+    <h3>Total wishes granted so far for all users: {{total_wishes_granted}}</h3>
+    <h3>Your granted wishes: {{my_granted_wishes_count}}</h3>
+    <h3>Your pending wishes: {{my_pending_wishes_count}}</h3>
+</body>
+</html>

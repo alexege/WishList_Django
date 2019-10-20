@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wish_app/css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Hello {{current_user.first_name}}! Let's edit a wish!</h2>
+    
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }} red"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div>
+        <form action="/wishes/update" method="POST">
+            {% csrf_token %}
+
+            <!-- Storing the current wish in a hidden input-->
+            <input type="hidden" name="id" value={{current_wish_object.id}}>
+
+            <label>I wish for:</label>
+            <input type="text" name="name" value="{{current_wish_object.name}}"><br>
+
+            <label>Description:</label>
+            <input type="text" name="description" value="{{current_wish_object.description}}"><br>
+
+            <a href="/dashboard"><button>Cancel</button></a>
+            <button>Edit</button>
+        </form>
+    </div>
+</body>
+</html>

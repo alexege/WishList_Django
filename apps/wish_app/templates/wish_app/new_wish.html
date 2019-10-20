@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wish_app/css/style.css' %}">
+    <title>New Wish</title>
+</head>
+<body>
+    <h2>Hello {{current_user.first_name}}! Make a wish!</h2>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }} red"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div>
+        <form action="/create" method="POST">
+            {% csrf_token %}
+            <label>I wish for:</label>
+            <input type="text" name="name"><br>
+
+            <label>Description:</label>
+            <input type="text" name="description"><br>
+
+            <a href="/dashboard"><button type="button">Cancel</button></a>
+            <button>submit</button>
+        </form>
+    </div>
+</body>
+</html>
